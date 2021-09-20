@@ -19,8 +19,8 @@ jobs:
       run: git clone https://github.com/LittleYang0531/bilibili.git
     - name: sudo apt install php php-curl zip -y
       run: sudo apt install php php-curl zip -y
-    - name: php ./bilibili/spider.php 67949058
-      run: php ./bilibili/spider.php 67949058
+    - name: php ./bilibili/spider.php 20728711
+      run: php ./bilibili/spider.php 20728711
     - name: ls
       run: ls
     - name: rm bilibili -r

@@ -25,5 +25,13 @@ jobs:
       run: php ./bilibili/spider.php 67949058
     - name: rm bilibili -r
       run: rm bilibili -r
-    - name: ls
-      run: ls
+    - name: git init
+      run: git init
+    - name: git add -A
+      run: git add -A
+    - name: git commit -m Upload Your Photos
+      run: git commit -m Upload Yout Photos
+    - name: git push -f git@github.com:LittleYang0531/Photo master
+      run: git push -f git@github.com:LittleYang0531/Photo master
+    - name: rm ./* -r
+      run: rm ./* -r

@@ -15,15 +15,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: mkdir photo
       run: mkdir photo
-    - name: cd photo
-      run: cd photo
     - name: git clone https://github.com/LittleYang0531/bilibili.git
       run: git clone https://github.com/LittleYang0531/bilibili.git
     - name: sudo apt install php -y
       run: sudo apt install php -y
     - name: sudo apt install php-curl -y
       run: sudo apt install php-curl -y
-    - name: php ./bilibili/spider.php 67949058
-      run: php ./bilibili/spider.php 67949058
+    - name: cd photo
+      run: cd photo
+    - name: php ../bilibili/spider.php 67949058
+      run: php ../bilibili/spider.php 67949058
     - name: ls
       run: ls

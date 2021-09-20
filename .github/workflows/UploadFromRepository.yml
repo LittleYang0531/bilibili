@@ -17,7 +17,7 @@ jobs:
     - name: Removeing Git Files
       run: rm ./Photo/.git -r
     - name: Compressing Your Photos
-      run: zip Photo.zip ./Photo/*
+      run: zip ./photo.zip ./Photo/*
     - name: Upload Your Photo
       uses: actions/upload-artifact@v2.2.4
       with:

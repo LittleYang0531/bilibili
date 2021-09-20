@@ -25,10 +25,10 @@ jobs:
       run: rm bilibili -r
     - name: Zipping Your Files
       run: zip Photo.zip ./*
-    - name: Upload Your Photos
+    - name: Uploading Your Photos
       uses: actions/upload-artifact@v2.2.4
       with:
-        name: Upload
+        name: photo
         path: ./Photo.zip
-    - name: rm ./* -r
+    - name: Removing all the Things
       run: rm ./* -r

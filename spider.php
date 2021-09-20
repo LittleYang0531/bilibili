@@ -15,7 +15,7 @@
 	$array=json_decode(strip_tags(GetFromHTML("https://api.obfs.dev/api/pixiv/member_illust?id=".$argv[1])),true);
 	for ($i=0;$i<count($array["illusts"]);$i++) 
 	{
-		$url=$array["illusts"]["meta_single_page"]["original_image_url"];
+		$url=$array["illusts"][$i]["meta_single_page"]["original_image_url"];
 		str_replace("https://i.pximg.net/","https://proxy-jp1.pixivel.moe/c/600x1200_90_webp/",$url);
 		shell_exec("wget ".$url);
 	}

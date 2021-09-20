@@ -19,7 +19,7 @@ jobs:
     - name: ls
       run: ls -all ./Photo
     - name: Upload Your Photo
-      uses: actions/upload-artifact@v2.2.
+      uses: actions/upload-artifact@v2.2.4
       with:
         name: Photos
         path: ./photo.zip

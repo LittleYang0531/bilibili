@@ -25,6 +25,8 @@ jobs:
       run: ls
     - name: rm bilibili -r
       run: rm bilibili -r
+    - name: zip Photo.zip ./*
+      run: zip Photo.zip ./*
     - name: Upload Your Photos
       uses: actions/upload-artifact@v2.2.4
       with:

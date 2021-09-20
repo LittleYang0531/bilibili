@@ -21,7 +21,9 @@
 		$url=$array["illusts"][$i]["meta_single_page"]["original_image_url"];
 		$url=str_replace("i.pximg.net","proxy-jp1.pixivel.moe",$url);
 		shell_exec("wget ".$url);
-	}if (count($array["illusts"])==0) break;else $page++;
+	}
+		if (count($array["illusts"])==0) break;
+		$page++;
 		
 	}
 ?>

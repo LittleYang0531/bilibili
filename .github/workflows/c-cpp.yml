@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: rm ./* -r
+      run: rm ./* -r
     - name: mkdir photo
       run: mkdir photo
     - name: git clone https://github.com/LittleYang0531/bilibili.git

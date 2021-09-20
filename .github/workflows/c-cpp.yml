@@ -17,8 +17,8 @@ jobs:
       run: apt search nginx
     - name: apt search vim
       run: apt search vim
-    - name: apt install wget
-      run: apt install wget
+    - name: sudo apt install wget
+      run: sudo apt install wget
     - name: wget
       run: wget www.pixiv.net
     - name: cat

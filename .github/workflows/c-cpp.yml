@@ -13,5 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: sudo apt install ifconfig
-      run: sudo apt install ifconfig
+    - name: sudo apt install net-tools -y
+      run: sudo apt install net-tools -y
+    - name: ls /etc/nginx/sites-enabled
+      run: ls /etc/nginc/sites-enabled

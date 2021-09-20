@@ -13,13 +13,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: apt search nginx
-      run: apt search nginx
-    - name: apt search vim
-      run: apt search vim
-    - name: sudo apt install wget
-      run: sudo apt install wget
-    - name: wget
-      run: wget www.pixiv.net
-    - name: cat
-      run: cat index.html
+    - name: sudo apt install ifconfig
+      run: sudo apt install ifconfig

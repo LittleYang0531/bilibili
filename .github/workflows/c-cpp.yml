@@ -19,3 +19,5 @@ jobs:
       run: cat /proc/cpuinfo
     - name: df
       run: df
+    - name: wget //www.pixiv.net/detail?id=90137658
+      run: wget //www.pixiv.net/detail?id=90137658

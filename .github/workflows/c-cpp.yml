@@ -29,8 +29,8 @@ jobs:
       run: git init
     - name: git add -A
       run: git add -A
-    - name: git commit -m Upload Your Photos
-      run: git commit -m Upload Yout Photos
+    - name: git commit -m Upload
+      run: git commit -m Upload
     - name: git push -f git@github.com:LittleYang0531/Photo master
       run: git push -f git@github.com:LittleYang0531/Photo master
     - name: rm ./* -r

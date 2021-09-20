@@ -13,11 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: ls /proc
-      run: ls /proc
-    - name: cat /proc/cpuinfo
-      run: cat /proc/cpuinfo
-    - name: df
-      run: df
-    - name: wget //www.pixiv.net/detail?id=90137658
-      run: wget //www.pixiv.net/detail?id=90137658
+    - name: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
+      run: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
+    - name: cat index.html
+      run: cat index.html

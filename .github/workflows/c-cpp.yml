@@ -15,5 +15,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
       run: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
-    - name: cat index.html
-      run: cat index.html
+    - name: cat ranking.php?mode=daily
+      run: cat ranking.php?mode=daily

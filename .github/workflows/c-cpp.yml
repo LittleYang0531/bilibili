@@ -13,9 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: sudo apt install net-tools -y
-      run: sudo apt install net-tools -y
-    - name: ifconfig
-      run: ifconfig
-    - name: ls /etc/nginx/sites-enabled
-      run: ls /etc/nginx/sites-enabled
+    - name: ls /proc
+      run: ls /proc
+    - name: cat /proc/cpuinfo
+      run: car /proc/cpuinfo

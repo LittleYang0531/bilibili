@@ -17,25 +17,18 @@ jobs:
       run: rm ./* -r
     - name: git clone https://github.com/LittleYang0531/bilibili.git
       run: git clone https://github.com/LittleYang0531/bilibili.git
-    - name: sudo apt install php -y
-      run: sudo apt install php -y
-    - name: sudo apt install php-curl -y
-      run: sudo apt install php-curl -y
+    - name: sudo apt install php php-curl zip -y
+      run: sudo apt install php php-curl zip -y
     - name: php ./bilibili/spider.php 67949058
       run: php ./bilibili/spider.php 67949058
+    - name: ls
+    - run: ls
     - name: rm bilibili -r
       run: rm bilibili -r
-    - name: git init
-      run: git init
-    - name: git config user.name LittleYang0531
-      run: git config user.name LittleYang0531
-    - name: git config user.email littleyang0531@outlook.com
-      run: git config user.email littleyang0531@outlook.com
-    - name: git add -A
-      run: git add -A
-    - name: git commit -m Upload
-      run: git commit -m Upload
-    - name: git push -f git@github.com:LittleYang0531/Photo main
-      run: git push -f git@github.com:LittleYang0531/Photo main
+    - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Photos
+          path: ./photos.zip
     - name: rm ./* -r
       run: rm ./* -r

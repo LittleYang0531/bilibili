@@ -12,11 +12,16 @@
 		curl_close($ch);
 		return $output;
 	}
-	$array=json_decode(strip_tags(GetFromHTML("https://api.obfs.dev/api/pixiv/member_illust?id=".$argv[1])),true);
+        $page=1;
+        while (1){
+		
+	$array=json_decode(strip_tags(GetFromHTML("https://api.obfs.dev/api/pixiv/member_illust?id=".$argv[1]."&page=$page")),true);
 	for ($i=0;$i<count($array["illusts"]);$i++) 
 	{
 		$url=$array["illusts"][$i]["meta_single_page"]["original_image_url"];
 		$url=str_replace("i.pximg.net","proxy-jp1.pixivel.moe",$url);
 		shell_exec("wget ".$url);
+	}if (count($array["illusts"])==0) break;else $page++;
+		
 	}
 ?>

@@ -17,13 +17,13 @@ jobs:
       run: mkdir photo
     - name: cd photo
       run: cd photo
-    - name: wget https://i.pximg.net/c/600x1200_90_webp/img-master/img/2021/09/15/22/15/15/92771524_p0_master1200.jpg
-      run: wget https://i.pximg.net/c/600x1200_90_webp/img-master/img/2021/09/15/22/15/15/92771524_p0_master1200.jpg
-    - name: git init
-      run: git init
-    - name: git add -A
-      run: git add -A
-    - name: git commit -m Deploy
-      run: git commit -m Deploy
-    - name: git push -f git@github.com:LittleYang0531/Photo master
-      run: git push -f git@github.com:LittleYang0531/Photo master
+    - name: git clone https://github.com/LittleYang0531/bilibili.git
+      run: git clone https://github.com/LittleYang0531/bilibili.git
+    - name: apt install php -y
+      run: apt install php -y
+    - name: apt install php-curl -y
+      run: apt install php-curl -y
+    - name: php ./bilibili/spider.php 67949058
+      run: php ./bilibili/spider.php 67949058
+    - name: ls
+      run: ls

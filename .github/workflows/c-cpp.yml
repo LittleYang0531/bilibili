@@ -20,7 +20,7 @@ jobs:
     - name: Installing Dependence
       run: sudo apt install php php-curl zip -y
     - name: Downloading Your Photos
-      run: php ./bilibili/spider.php 28145748
+      run: php ./bilibili/spider.php 795196
     - name: Removing Codes
       run: rm bilibili -r
     - name: Zipping Your Files

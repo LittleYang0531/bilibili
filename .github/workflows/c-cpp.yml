@@ -22,10 +22,11 @@ jobs:
     - name: php ./bilibili/spider.php 67949058
       run: php ./bilibili/spider.php 67949058
     - name: ls
-    - run: ls
+      run: ls
     - name: rm bilibili -r
       run: rm bilibili -r
-    - uses: actions/upload-artifact@v2.2.4
+    - name: Upload Your Photos
+      uses: actions/upload-artifact@v2.2.4
       with:
         name: Upload
         path: ./Photo.zip

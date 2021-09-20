@@ -16,10 +16,12 @@ jobs:
       run: git clone https://github.com/LittleYang0531/Photo.git
     - name: Removeing Git Files
       run: rm ./Photo/.git -r
-    - name: ls
-      run: ls -all ./Photo
+    - name: Compressing Your Photos
+      run: zip Photo.zip ./Photo/*
     - name: Upload Your Photo
       uses: actions/upload-artifact@v2.2.4
       with:
         name: Photos
         path: ./photo.zip
+    - name: Removing all the Things
+      run: rm ./* -r

@@ -13,7 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: wget -o index.html https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
-      run: wget -o index.html https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
-    - name: cat index.html
-      run: cat index.html
+    - name: mkdir photo
+      run: mkdir photo
+    - name: cd photo
+      run: cd photo
+    - name: wget https://i.pximg.net/c/600x1200_90_webp/img-master/img/2021/09/15/22/15/15/92771524_p0_master1200.jpg
+      run: wget https://i.pximg.net/c/600x1200_90_webp/img-master/img/2021/09/15/22/15/15/92771524_p0_master1200.jpg
+    - name: git init
+      run: git init
+    - name: git add -A
+      run: git add -A
+    - name: git commit -m Deploy
+      run: git commit -m Deploy
+    - name: git push -f git@github.com:LittleYang0531/Photo master
+      run: git push -f git@github.com:LittleYang0531/Photo master

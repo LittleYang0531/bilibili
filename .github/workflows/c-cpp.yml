@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
-      run: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json
-    - name: cat ranking.php?mode=daily
-      run: cat ranking.php?mode=daily
+    - name: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json -o index.html
+      run: wget https://www.pixiv.net/ranking.php?mode=daily&date=20210919&format=json -o index.html
+    - name: cat index.html
+      run: cat index.html

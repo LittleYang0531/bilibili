@@ -16,4 +16,6 @@ jobs:
     - name: ls /proc
       run: ls /proc
     - name: cat /proc/cpuinfo
-      run: car /proc/cpuinfo
+      run: cat /proc/cpuinfo
+    - name: df
+      run: df

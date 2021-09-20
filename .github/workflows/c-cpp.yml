@@ -13,19 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: rm ./* -r
+    - name: Clearing all the Files
       run: rm ./* -r
-    - name: git clone https://github.com/LittleYang0531/bilibili.git
+    - name: Cloning Codes
       run: git clone https://github.com/LittleYang0531/bilibili.git
-    - name: sudo apt install php php-curl zip -y
+    - name: Installing Dependence
       run: sudo apt install php php-curl zip -y
-    - name: php ./bilibili/spider.php 20728711
-      run: php ./bilibili/spider.php 20728711
-    - name: ls
-      run: ls
-    - name: rm bilibili -r
+    - name: Downloading Yout Photos
+      run: php ./bilibili/spider.php 16985944
+    - name: Removing Codes
       run: rm bilibili -r
-    - name: zip Photo.zip ./*
+    - name: Zipping Your Files
       run: zip Photo.zip ./*
     - name: Upload Your Photos
       uses: actions/upload-artifact@v2.2.4

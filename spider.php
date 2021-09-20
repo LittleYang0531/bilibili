@@ -16,7 +16,7 @@
 	for ($i=0;$i<count($array["illusts"]);$i++) 
 	{
 		$url=$array["illusts"][$i]["meta_single_page"]["original_image_url"];
-		str_replace("i.pximg.net","proxy-jp1.pixivel.moe/c/600x1200_90_webp",$url);
+		$url=str_replace("i.pximg.net","proxy-jp1.pixivel.moe/c/600x1200_90_webp",$url);
 		shell_exec("wget ".$url);
 	}
 ?>

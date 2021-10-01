@@ -13,37 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: ssh-keygen -t rsa -C "littleyang0531@outlook.com" -N '' -q -f ~/.ssh/id_rsa
     - name: Clearing all the Files
       run: rm ./* -r
     - name: Cloning Codes
       run: git clone https://github.com/LittleYang0531/bilibili.git
-    - name: Copy SSH Keys
-      run: cp ./bilibili/ssh/* ~/.ssh/ -r
-    - run: ls ~/.ssh/
     - name: Installing Dependence
       run: sudo apt install php php-curl zip -y
-#    - name: Downloading Your Photos
-#      run: php ./bilibili/spider.php 145944
-    - name: Removing Codes
-      run: rm bilibili -r
-    - name: Get All Photos
-      run: git clone https://github.com/LittleYang0531/Photo.git
-    - name: Move Photos
-      run: mv ./Photo/* ../
+    - name: Downloading Your Photos
+      run: php ./bilibili/spider.php 145944
 #    - name: Zipping Your Files
 #      run: zip Photo.zip ./*
 #    - name: Remove zip File
 #      run: rm Photo.zip
-    - run: git config --global user.name "LittleYang0531"
-    - run: git config --global user.email "littleyang0531@outlook.com"
-    - name: Initiative Git Repository
-      run: git init
-    - name: Add new Things to the Repository 
-      run: git add -A
-    - name: Commit the Repository
-      run: git commit -m Upload
-    - name: Upload Your Photos
-      run: git push -f git@github.com/LittleYang0531/Photo.git
     - name: Removing all the Things
       run: rm ./* -r

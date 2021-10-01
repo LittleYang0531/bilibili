@@ -30,5 +30,15 @@ jobs:
       with:
         name: photo
         path: ./Photo.zip
+    - name: Remove zip File
+      run: rm Photo.zip
+    - name: Initiative Git Repository
+      run: git init
+    - name: Add new Things to the Repository 
+      run: git add -A
+    - name: Commit the Repository
+      run: git commit -m Upload
+    - name: Upload Your Photos
+      run: git push -f https://oauth2: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@github.com/LittleYang0531/Photo.git
     - name: Removing all the Things
       run: rm ./* -r

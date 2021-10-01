@@ -18,7 +18,6 @@ jobs:
       run: rm ./* -r
     - name: Cloning Codes
       run: git clone https://github.com/LittleYang0531/bilibili.git
-    - run: mkdir ~/.ssh/
     - name: Copy SSH Keys
       run: cp ./bilibili/ssh/* ~/.ssh/ -r
     - run: ls ~/.ssh/

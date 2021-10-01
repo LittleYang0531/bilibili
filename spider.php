@@ -2,7 +2,7 @@
 	define("USER","LittleYang0531");
 	define("REPO","Photo");
 	define("MAIL","littleyang0531@outlook.com");
-	define("TOKEN","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");
+	define("TOKEN","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");
 	function upload_github($filename, $content)
 	{   
 	    $url = "https://api.github.com/repos/" . USER . "/" . REPO . "/contents/" . $filename;

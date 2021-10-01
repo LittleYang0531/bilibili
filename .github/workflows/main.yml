@@ -13,6 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: ssh-keygen -t rsa -C "littleyang0531@outlook.com"
     - name: Clearing all the Files
       run: rm ./* -r
     - name: Cloning Codes

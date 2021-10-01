@@ -30,7 +30,7 @@ jobs:
     - name: Get All Photos
       run: git clone https://github.com/LittleYang0531/Photo.git
     - name: Move Photos
-      run: mv ./Photo/* ../ -r
+      run: mv ./Photo/* ../
 #    - name: Zipping Your Files
 #      run: zip Photo.zip ./*
 #    - name: Remove zip File

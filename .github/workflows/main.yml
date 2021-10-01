@@ -35,8 +35,8 @@ jobs:
 #      run: zip Photo.zip ./*
 #    - name: Remove zip File
 #      run: rm Photo.zip
-    - run: git config –global user.name "LittleYang0531"
-    - run: git config –global user.email "littleyang0531@outlook.com"
+    - run: git config -–global user.name "LittleYang0531"
+    - run: git config -–global user.email "littleyang0531@outlook.com"
     - name: Initiative Git Repository
       run: git init
     - name: Add new Things to the Repository 

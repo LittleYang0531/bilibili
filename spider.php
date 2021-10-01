@@ -50,7 +50,7 @@
 	{
 		$url=$array["illusts"][$i]["meta_single_page"]["original_image_url"];
 		$url=str_replace("i.pximg.net","proxy-jp1.pixivel.moe",$url);
-		shell_exec("wget ".$url);
+		shell_exec("wget ".$url." -O ".$array["illusts"][$i]["id"]."_0.jpg");
 		upload_github($array["illusts"][$i]["id"]."_0.jpg",base64_encode(file_get_contents($array["illusts"][$i]["id"]."_0.jpg")));
 	}
 ?>

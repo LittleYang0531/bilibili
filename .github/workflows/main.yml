@@ -21,9 +21,9 @@ jobs:
       run: sudo apt install php php-curl zip -y
     - name: Downloading Your Photos
       run: php ./bilibili/spider.php 145944
-#    - name: Zipping Your Files
-#      run: zip Photo.zip ./*
-#    - name: Remove zip File
-#      run: rm Photo.zip
+    - name: Removing Codes
+      run: rm ./bilibili -r
+    - name: Zipping Your Files
+      run: zip Photo.zip ./*
     - name: Removing all the Things
       run: rm ./* -r

@@ -8,6 +8,6 @@ for ($i=1;$i<=3-$cnt;$i++) $tmp="0".$tmp;
 
 return $tmp;}
 
-for ($i=1;$i<=195;$i++) exec("wget https://mhua.zerobywrevi.com/manhua/Pa7n7m5ic/52-58/".getid($i).".jpg -O ./output/".getid($i).".jpg");
+for ($i=1;$i<=211;$i++) exec("wget https://mhua.zerobywrevi.com/manhua/Pa7n7m5ic/59-67/".getid($i).".jpg -O ./output/".getid($i).".jpg");
 
 ?>

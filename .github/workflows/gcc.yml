@@ -30,11 +30,15 @@ jobs:
 
       # Runs a single command using the runners shell
       - run: |
-          wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.gz -O gcc.tar.gz
+          echo Downloading gcc-$VERSION source code from mirror...
+          wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.gz -O gcc.tar.gz -q
+          echo Extracting source code...
           tar -xvf gcc.tar.gz > /dev/null
           cd gcc-$VERSION
+          echo Downloading dependences...
           ./contrib/download_prerequisites
-          cd
+          cd ..
           mkdir gcc-build-$VERSION
           cd gcc-build-$VERSION
+          echo Checking system environment...
           ../gcc-$VERSION/configure --enable-checking=release --enable-languages=c,c++,java,objc,obj-c++,go,pascal --disable-multilib

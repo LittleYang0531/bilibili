@@ -28,5 +28,5 @@ jobs:
       # Runs a single command using the runners shell
       - run: |
           wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.1.0/gcc-12.1.0.tar.gz -O gcc.tar.gz
-          tar -xvf gcc.tar.gz
+          tar -xvf gcc.tar.gz > /dev/null
           ls

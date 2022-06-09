@@ -12,6 +12,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+env:
+  VERSION: 12.1.0
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,6 +30,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - run: |
-          wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.1.0/gcc-12.1.0.tar.gz -O gcc.tar.gz
+          wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.gz -O gcc.tar.gz
           tar -xvf gcc.tar.gz > /dev/null
-          ls
+          cd gcc-$VERSION
+          ./contrib/download_prerequisites
+          cd
+          mkdir gcc-build-$VERSION
+          cd gcc-build-$VERSION
+          ../gcc-$VERSION/configure --enable-checking=release --enable-languages=c,c++,java,objc,obj-c++,go,pascal --disable-multilib

@@ -41,42 +41,42 @@ jobs:
       - name: Download gcc source code from https://github.com/gcc-mirror/gcc
         run: wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
       - name: Extract source code
-      - run: |
+        run: |
           tar -xvf gcc.tar.gz
           mv gcc-$TYPE-gcc-$VERSION gcc-$VERSION
       - name: Download dependences
-      - run: |
+        run: |
           cd gcc-$VERSION
           ./contrib/download_prerequisites
       - name: Prepare for build environment
-      - run: mkdir gcc-build-$VERSION
+        run: mkdir gcc-build-$VERSION
       - name: Check system environment
-      - run: |
+        run: |
           cd gcc-build-$VERSION
           ../gcc-$VERSION/configure --enable-checking=release --enable-languages=c,c++,fortran,go,lto,objc,obj-c++ --disable-multilib
       - name: Compile source code
-      - run: |
+        run: |
           cd gcc-build-$VERSION
           sudo make -j16
       - name: Install gcc to Github Action
-      - run: |
+        run: |
           cd gcc-build-$VERSION
           sudo make install
       - name: Check gcc version
-      - run: | 
+        run: | 
           ls /usr/bin -all -h
           gcc --version
           g++ --version
           gccgo --version
       - name: Check for C++ 23
-      - run: |
+        run: |
           touch main.cpp
           echo "#include<bits/stdc++.h>" >> main.cpp
           echo "using namespace std;" >> main.cpp
           echo "int main(){}" >> main.cpp
           g++ main.cpp -o main -std=c++2b
       - name: Make gcc deb
-      - run: |
+        run: |
           mkdir gcc-deb
           cd gcc-deb
           mkdir DEBIAN
@@ -98,5 +98,3 @@ jobs:
           sudo cp /usr/share ./ -r
           cd ../../
           dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb
-        
-      

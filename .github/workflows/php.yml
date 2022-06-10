@@ -31,7 +31,7 @@ jobs:
       - name: Install dependences
         run: |
           sudo apt update
-          sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libzip-dev libcurl4-gnutls-dev libtidy-dev libxslt1-dev libenchant-dev libc-client2007e-dev libkrb5-dev libldap2-dev unixodbc-dev
+          sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libzip-dev libcurl4-gnutls-dev libtidy-dev libxslt1-dev libenchant-dev libc-client2007e-dev libkrb5-dev libldap2-dev ucf libc6 libodbc1
           wget https://github.com/kkos/oniguruma/releases/download/v6.9.7.1/onig-6.9.7.1.tar.gz -O onig-6.9.7.1.tar.gz 
           tar -zxvf onig-6.9.7.1.tar.gz 
           cd onig-6.9.7/ 

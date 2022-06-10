@@ -36,6 +36,7 @@ jobs:
           echo Extracting source code...
           tar -xvf gcc.tar.gz > /dev/null
           ls -all
+          mv gcc-$TYPE-gcc-$VERSION gcc-$VERSION
           cd gcc-$VERSION
           echo Downloading dependences...
           ./contrib/download_prerequisites

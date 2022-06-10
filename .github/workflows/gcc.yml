@@ -62,15 +62,15 @@ jobs:
       - name: Check gcc version
         run: | 
           ls /usr/bin -all -h
-          gcc --version
-          g++ --version
-      - name: Check for C++ 23
+          /etc/gcc/$TYPE/$VERSION/usr/local/bin/gcc --version
+          /etc/gcc/$TYPE/$VERSION/usr/local/bin/g++ --version
+      - name: Check for C++23
         run: |
           touch main.cpp
           echo "#include<bits/stdc++.h>" >> main.cpp
           echo "using namespace std;" >> main.cpp
           echo "int main(){}" >> main.cpp
-          g++ main.cpp -o main -std=c++2b
+          /etc/gcc/$TYPE/$VERSION/usr/local/bin/g++ main.cpp -o main -std=c++2b
       - name: Make gcc deb
         run: |
           mkdir gcc-deb
@@ -88,8 +88,7 @@ jobs:
           echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531)" >> control
           echo Description: GNU Compilers >> control
           cd ../
-          mkdir usr
-          sudo cp /etc/gcc/$TYPE/$VERSION ./ -r
+          sudo cp /etc/gcc/$TYPE/$VERSION/* ./ -r
           cd ../../
           dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb
       - name: Create GitHub release

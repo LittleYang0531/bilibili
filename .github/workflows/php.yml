@@ -56,13 +56,7 @@ jobs:
         run: |
           cd php-src-php-$VERSION
           cd ext
-          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            cd $i
-            /etc/php/$VERSION/bin/phpize --force
-            ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
-            sudo make && sudo make install
-            cd ..
-          ; done
+          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do cd $i && /etc/php/$VERSION/bin/phpize --force && ./configure --with-php-config=/etc/php/$VERSION/bin/php-config && sudo make && sudo make install && cd ../ ; done
       - name: Test php
         run: |
           cd /etc/php/$VERSION

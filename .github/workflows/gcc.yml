@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: gcc-build
 
 # Controls when the workflow will run
 on:
@@ -35,6 +35,7 @@ jobs:
           wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
           echo Extracting source code...
           tar -xvf gcc.tar.gz > /dev/null
+          ls -all
           cd gcc-$VERSION
           echo Downloading dependences...
           ./contrib/download_prerequisites

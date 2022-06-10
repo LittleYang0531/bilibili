@@ -72,6 +72,7 @@ jobs:
               echo -------------------------------------------------------
               /etc/php/$VERSION/bin/phpize --force
               if [ $i == 'imap' ]; then ./configure --with-php-config=/etc/php/$VERSION/bin/php-config --with-kerberos --with-imap-ssl;
+              elif [ $i == 'odbc' ]; then ./configure --with-php-config=/etc/php/$VERSION/bin/php-config --with-pdo-odbc=unixODBC,/usr;
               else ./configure --with-php-config=/etc/php/$VERSION/bin/php-config;
               fi;
               sudo make -j32 && sudo make install

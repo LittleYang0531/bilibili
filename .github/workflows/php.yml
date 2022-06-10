@@ -69,7 +69,9 @@ jobs:
               echo 
               echo -------------------------------------------------------
               /etc/php/$VERSION/bin/phpize --force
-              ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
+              if [ $i == 'imap' ]; then ./configure --with-php-config=/etc/php/$VERSION/bin/php-config --with-kerberos --with-imap-ssl;
+              else ./configure --with-php-config=/etc/php/$VERSION/bin/php-config;
+              fi;
               sudo make && sudo make install
               cd ../;
             fi;

@@ -108,7 +108,7 @@ jobs:
         run: |
           cd /etc/php/$VERSION
           sudo zip ~/php$VERSION-linux-amd64.zip ./* -r
-      - name: Make gcc deb
+      - name: Make php deb
 
         run: |
 
@@ -143,8 +143,6 @@ jobs:
           cd ../
 
           mkdir etc
-
-          mkdir etc/php
 
           mkdir etc/php
 

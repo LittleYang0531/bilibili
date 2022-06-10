@@ -52,4 +52,23 @@ jobs:
           echo Checking gcc version...
           gcc --version
           ls /usr/bin -all -h
-          
+          cd ../
+          mkdir gcc-deb
+          cd gcc-deb
+          mkdir DEBIAN
+          cd DEBIAN
+          touch control
+          echo Package: gcc >> control
+          echo Version: $VERSION-$TYPE >> control
+          echo Section: utils >> control
+          echo Priority: optional >> control
+          echo Depends: >> control
+          echo Suggests: >> control
+          echo Architecture: i386 >> control
+          echo Maintainer: LittleYang0531(https://github.com/LittleYang0531) >> control
+          echo Description: GNU Compilers >> control
+          cd ..
+          mkdir usr
+          sudo cp /usr/* ./ -r
+          cd ../../
+          dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb

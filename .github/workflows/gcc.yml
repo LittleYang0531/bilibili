@@ -22,7 +22,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,29 +30,53 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
+      - name: Display gcc version
+        run: echo gcc-$TYPE-$VERSION
+      - name: Test artifact
+        run: touch gcc-$TYPE-$VERSION.deb
+      - name: Upload archifect
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: gcc-$TYPE-$VERSION.deb
+      - name: Download gcc source code from https://github.com/gcc-mirror/gcc
+        run: wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
+      - name: Extract source code
       - run: |
-          echo Downloading gcc-$VERSION source code from mirror...
-          wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
-          echo Extracting source code...
-          tar -xvf gcc.tar.gz > /dev/null
-          ls -all
+          tar -xvf gcc.tar.gz
           mv gcc-$TYPE-gcc-$VERSION gcc-$VERSION
+      - name: Download dependences
+      - run: |
           cd gcc-$VERSION
-          echo Downloading dependences...
           ./contrib/download_prerequisites
-          cd ..
-          mkdir gcc-build-$VERSION
+      - name: Prepare for build environment
+      - run: mkdir gcc-build-$VERSION
+      - name: Check system environment
+      - run: |
           cd gcc-build-$VERSION
-          echo Checking system environment...
           ../gcc-$VERSION/configure --enable-checking=release --enable-languages=c,c++,fortran,go,lto,objc,obj-c++ --disable-multilib
-          echo Compiling source code...
+      - name: Compile source code
+      - run: |
+          cd gcc-build-$VERSION
           sudo make -j16
-          echo Installing gcc...
+      - name: Install gcc to Github Action
+      - run: |
+          cd gcc-build-$VERSION
           sudo make install
-          echo Checking gcc version...
-          gcc --version
+      - name: Check gcc version
+      - run: | 
           ls /usr/bin -all -h
-          cd ../
+          gcc --version
+          g++ --version
+          gccgo --version
+      - name: Check for C++ 23
+      - run: |
+          touch main.cpp
+          echo "#include<bits/stdc++.h>" >> main.cpp
+          echo "using namespace std;" >> main.cpp
+          echo "int main(){}" >> main.cpp
+          g++ main.cpp -o main -std=c++2b
+      - name: Make gcc deb
+      - run: |
           mkdir gcc-deb
           cd gcc-deb
           mkdir DEBIAN
@@ -65,10 +89,14 @@ jobs:
           echo Depends: >> control
           echo Suggests: >> control
           echo Architecture: i386 >> control
-          echo Maintainer: LittleYang0531(https://github.com/LittleYang0531) >> control
+          echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531) >> control"
           echo Description: GNU Compilers >> control
-          cd ..
+          cd ../
           mkdir usr
-          sudo cp /usr/* ./ -r
+          sudo cp /usr/bin ./ -r
+          sudo cp /usr/lib ./ -r
+          sudo cp /usr/share ./ -r
           cd ../../
           dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb
+        
+      

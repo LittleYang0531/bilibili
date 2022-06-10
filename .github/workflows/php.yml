@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Install Dependences
+      - name: Install dependences
         run: |
           sudo apt update
           sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libzip-dev libcurl4-gnutls-dev libtidy-dev libxslt1-dev
@@ -46,7 +46,6 @@ jobs:
       - name: Build Base Application
         run: |
           cd php-src-php-$VERSION
-          cd ext
           ./buildconf --force
           ./buildconf
           ./configure --prefix=/etc/php/$VERSION --sysconfdir=/etc/php/$VERSION --with-config-file-path=/etc/php/$VERSION --enable-fpm --enable-cgi

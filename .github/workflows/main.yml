@@ -1,7 +1,5 @@
 name: ssh
 on:
-  push:
-    branches: [ main ]
 
 jobs:
   hello:

@@ -44,20 +44,6 @@ jobs:
           wget https://github.com/php/php-src/archive/refs/tags/php-$VERSION.zip -O php.zip
           unzip -q php.zip
           cd php-src-php-$VERSION/ext
-          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            if [ -d $i ] && [ -f $i/config.m4 ]; then
-              cd $i
-              echo --------------------------------------------------------
-              echo 
-              echo 
-              echo Installing Extension $i for PHP$VERSION
-              echo Recent Directroy: $(pwd)
-              echo 
-              echo 
-              echo -------------------------------------------------------
-              cd ../;
-            fi;
-          done
       - name: Build Base Application
         run: |
           cd php-src-php-$VERSION
@@ -71,7 +57,7 @@ jobs:
         run: |
           cd php-src-php-$VERSION/ext
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            if test -d $i; then
+            if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i
               echo --------------------------------------------------------
               echo 

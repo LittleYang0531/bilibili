@@ -42,7 +42,7 @@ jobs:
       - name: Get PHP source
         run: |
           wget https://github.com/php/php-src/archive/refs/tags/php-$VERSION.zip -O php.zip
-          unzip php.zip -q
+          unzip -q php.zip
           cd php-src-php-$VERSION
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if test -d $i; then

@@ -32,19 +32,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Display gcc version
         run: echo gcc-$TYPE-$VERSION
-      - name: Test artifact
-        run: |
-          touch gcc-$TYPE-$VERSION.deb
-          echo hahaha > gcc-$TYPE-$VERSION.deb
-      - name: Create GitHub release
-        uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ env.TYPE }}-${{ env.VERSION }}
-          title: gcc-${{ env.TYPE }}-${{ env.VERSION }}
-          prerelease: false
-          files: |
-            gcc-${{ env.TYPE }}-${{ env.VERSION }}.deb
       - name: Download gcc source code from https://github.com/gcc-mirror/gcc
         run: wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
       - name: Extract source code
@@ -64,17 +51,19 @@ jobs:
       - name: Compile source code
         run: |
           cd gcc-build-$VERSION
-          sudo make -j16
+          sudo make -j32
       - name: Install gcc to Github Action
         run: |
           cd gcc-build-$VERSION
-          sudo make install
+          sudo mkdir /etc/gcc/
+          sudo mkdir /etc/gcc/$TYPE
+          sudo mkdir /etc/gcc/$TYPE/$VERSION
+          sudo make install DESTDIR=/etc/gcc/$TYPE/$VERSION
       - name: Check gcc version
         run: | 
           ls /usr/bin -all -h
           gcc --version
           g++ --version
-          gccgo --version
       - name: Check for C++ 23
         run: |
           touch main.cpp
@@ -96,12 +85,19 @@ jobs:
           echo Depends: >> control
           echo Suggests: >> control
           echo Architecture: i386 >> control
-          echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531) >> control"
+          echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531)" >> control
           echo Description: GNU Compilers >> control
           cd ../
           mkdir usr
-          sudo cp /usr/bin ./ -r
-          sudo cp /usr/lib ./ -r
-          sudo cp /usr/share ./ -r
+          sudo cp /etc/gcc/$TYPE/$VERSION ./ -r
           cd ../../
           dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb
+      - name: Create GitHub release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: ${{ env.TYPE }}-${{ env.VERSION }}
+          title: gcc-${{ env.TYPE }}-${{ env.VERSION }}
+          prerelease: false
+          files: |
+            gcc-${{ env.TYPE }}-${{ env.VERSION }}.deb

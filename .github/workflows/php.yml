@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build PHP
+name: php-build
 
 # Controls when the workflow will run
 on:
@@ -19,8 +19,8 @@ jobs:
   # This workflow contains a single job called "build"
   linux-amd64:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    name: Build on ubuntu-latest amd64
+    runs-on: ubuntu-20.04
+    name: Build
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -47,8 +47,6 @@ jobs:
         run: |
           cd php-src-php-$VERSION
           cd ext
-          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do echo $i; done
-          agsfjdbaskjdnk
           ./buildconf --force
           ./buildconf
           ./configure --prefix=/etc/php/$VERSION --sysconfdir=/etc/php/$VERSION --with-config-file-path=/etc/php/$VERSION --enable-fpm --enable-cgi
@@ -59,9 +57,13 @@ jobs:
         run: |
           cd php-src-php-$VERSION
           cd ext
-          /etc/php/$VERSION/bin/phpize --force
-          ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
-          sudo make && sudo make install
+          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
+            cd $i
+            /etc/php/$VERSION/bin/phpize --force
+            ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
+            sudo make && sudo make install
+            cd ..
+          ; done
       - name: Test php
         run: |
           cd /etc/php/$VERSION

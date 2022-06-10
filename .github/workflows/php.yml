@@ -56,7 +56,7 @@ jobs:
       - name: Build extensions
         run: |
           cd php-src-php-$VERSION/ext
-          rm hash -r
+          sudo rm hash -r
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i

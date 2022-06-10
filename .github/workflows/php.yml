@@ -31,7 +31,7 @@ jobs:
       - name: Install dependences
         run: |
           sudo apt update
-          sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libzip-dev libcurl4-gnutls-dev libtidy-dev libxslt1-dev libenchant-dev libc-client2007e-dev libkrb5-dev libldap2-dev unixodbc-dev libmysqlclient-dev freetds-dev libfbclient2 libib-util 
+          sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libzip-dev libcurl4-gnutls-dev libtidy-dev libxslt1-dev libenchant-dev libc-client2007e-dev libkrb5-dev libldap2-dev unixodbc-dev libmysqlclient-dev freetds-dev
           sudo mkdir /usr/local/incl
           sudo ln /usr/include/sqlext.h /usr/local/incl/sqlext.h -s
           wget https://github.com/kkos/oniguruma/releases/download/v6.9.7.1/onig-6.9.7.1.tar.gz -O onig-6.9.7.1.tar.gz 
@@ -61,6 +61,7 @@ jobs:
           sudo rm hash -r
           sudo rm json -r
           sudo rm oci8 -r
+          sudo rm pdo_firebird -r
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i

@@ -88,9 +88,16 @@ jobs:
           echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531)" >> control
           echo Description: GNU Compilers >> control
           cd ../
-          sudo cp /etc/gcc/$TYPE/$VERSION/* ./ -r
-          cd ../../
-          dpkg-deb gcc-deb gcc-$TYPE-$VERSION.deb
+          mkdir etc
+          mkdir etc/gcc
+          mkdir etc/gcc/$TYPE
+          mkdir etc/gcc/$TYPE/$VERSION
+          sudo cp /etc/gcc/$TYPE/$VERSION/* ./etc/gcc/$TYPE/$VERSION -r
+          cd ../
+          sudo chmod 0755 ./gcc-deb/DEBIAN
+          sudo chmod 0755 ./gcc-deb/DEBIAN/control
+          dpkg-deb -b gcc-deb
+          mv gcc-deb.deb gcc-$TYPE-$VERSION.deb
       - name: Create GitHub release
         uses: marvinpinto/action-automatic-releases@latest
         with:

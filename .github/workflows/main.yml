@@ -12,7 +12,7 @@ jobs:
         timeout-minutes: 30
         continue-on-error: true
         with:
-          frp_server_addr: 139.198.113.238
-          frp_server_port: 5443
-          frp_token: jqhVb79zYjxZWGtw
+          frp_server_addr: frp.freefrp.net
+          frp_server_port: 7000
+          frp_token: freefrp.net
           ssh_port: 24862

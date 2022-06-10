@@ -45,16 +45,18 @@ jobs:
           unzip php.zip
           cd php-src-php-$VERSION
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            cd $i
-            echo --------------------------------------------------------
-            echo 
-            echo 
-            echo Installing Extension $i for PHP$VERSION
-            echo Recent Directroy: ${pwd}
-            echo 
-            echo 
-            echo -------------------------------------------------------
-            echo ../;
+            if test -d $i then
+              cd $i
+              echo --------------------------------------------------------
+              echo 
+              echo 
+              echo Installing Extension $i for PHP$VERSION
+              echo Recent Directroy: ${pwd}
+              echo 
+              echo 
+              echo -------------------------------------------------------
+              echo ../;
+            fi;
           done
       - name: Build Base Application
         run: |

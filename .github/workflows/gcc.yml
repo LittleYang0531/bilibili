@@ -33,7 +33,9 @@ jobs:
       - name: Display gcc version
         run: echo gcc-$TYPE-$VERSION
       - name: Test artifact
-        run: touch gcc-$TYPE-$VERSION.deb
+        run: |
+          touch gcc-$TYPE-$VERSION.deb
+          echo hahaha > gcc-$TYPE-$VERSION.deb
       - name: Create GitHub release
         uses: marvinpinto/action-automatic-releases@latest
         with:

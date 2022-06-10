@@ -58,7 +58,7 @@ jobs:
           cd php-src-php-$VERSION/ext
           sudo rm hash -r
           sudo rm json -r
-          sudo rn oci8 -r
+          sudo rm oci8 -r
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i

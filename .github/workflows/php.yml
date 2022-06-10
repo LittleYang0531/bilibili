@@ -27,7 +27,26 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Test Github Release
+        run: echo empty > test.txt
       # Runs a single command using the runners shell
+      - name: Test GitHub release
+
+        uses: marvinpinto/action-automatic-releases@latest
+
+        with:
+
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+
+          automatic_release_tag: php-${{ env.VERSION }}
+
+          title: php-${{ env.VERSION }}
+
+          prerelease: false
+
+          files: |
+
+            test.txt
       - name: Install dependences
         run: |
           sudo apt update
@@ -89,3 +108,74 @@ jobs:
         run: |
           cd /etc/php/$VERSION
           sudo zip ~/php$VERSION-linux-amd64.zip ./* -r
+      - name: Make gcc deb
+
+        run: |
+
+          mkdir php-deb
+
+          cd php-deb
+
+          mkdir DEBIAN
+
+          cd DEBIAN
+
+          touch control
+
+          echo Package: php >> control
+
+          echo Version: $VERSION >> control
+
+          echo Section: utils >> control
+
+          echo Priority: optional >> control
+
+          echo Depends: >> control
+
+          echo Suggests: >> control
+
+          echo Architecture: i386 >> control
+
+          echo Maintainer: "LittleYang0531(https://github.com/LittleYang0531)" >> control
+
+          echo Description: The Explaner of the Best Language in the world! >> control
+
+          cd ../
+
+          mkdir etc
+
+          mkdir etc/php
+
+          mkdir etc/php
+
+          mkdir etc/php/$VERSION
+
+          sudo cp /etc/php/$VERSION/* ./etc/php/$VERSION -r
+
+          cd ../
+
+          sudo chmod 0755 ./php-deb/DEBIAN
+
+          sudo chmod 0755 ./php-deb/DEBIAN/control
+
+          dpkg-deb -b php-deb
+
+          mv php-deb.deb php-$VERSION.deb
+
+      - name: Create GitHub release
+
+        uses: marvinpinto/action-automatic-releases@latest
+
+        with:
+
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+
+          automatic_release_tag: php-${{ env.VERSION }}
+
+          title: php-${{ env.VERSION }}
+
+          prerelease: false
+
+          files: |
+
+            php-${{ env.VERSION }}.deb

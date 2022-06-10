@@ -1,0 +1,20 @@
+name: kind
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Creating kind cluster
+        uses: helm/kind-action@v1.0.0-rc.1
+      - uses: shaowenchen/debugger-action@v1
+        name: debugger
+        timeout-minutes: 30
+        continue-on-error: true
+        with:
+          frp_server_addr: 139.198.113.238
+          frp_server_port: 5443
+          frp_token: jqhVb79zYjxZWGtw
+          ssh_port: 24862

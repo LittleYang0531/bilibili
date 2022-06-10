@@ -43,7 +43,7 @@ jobs:
         run: |
           wget https://github.com/php/php-src/archive/refs/tags/php-$VERSION.zip -O php.zip
           unzip -q php.zip
-          cd php-src-php-$VERSION/etc
+          cd php-src-php-$VERSION/ext
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if test -d $i; then
               cd $i
@@ -69,22 +69,23 @@ jobs:
           sudo cp ./php.ini-production /etc/php/$VERSION/php.ini
       - name: Build extensions
         run: |
-          cd php-src-php-$VERSION
-          cd ext
+          cd php-src-php-$VERSION/ext
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            cd $i
-            echo --------------------------------------------------------
-            echo 
-            echo 
-            echo Installing Extension $i for PHP$VERSION
-            echo Recent Directroy: ${pwd}
-            echo 
-            echo 
-            echo -------------------------------------------------------
-            /etc/php/$VERSION/bin/phpize --force
-            ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
-            sudo make && sudo make install
-            cd ../;
+            if test -d $i; then
+              cd $i
+              echo --------------------------------------------------------
+              echo 
+              echo 
+              echo Installing Extension $i for PHP$VERSION
+              echo Recent Directroy: $(pwd)
+              echo 
+              echo 
+              echo -------------------------------------------------------
+              /etc/php/$VERSION/bin/phpize --force
+              ./configure --with-php-config=/etc/php/$VERSION/bin/php-config
+              sudo make && sudo make install
+              cd ../;
+            fi;
           done
       - name: Test php
         run: |

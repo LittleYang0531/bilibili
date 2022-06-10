@@ -45,7 +45,7 @@ jobs:
           unzip -q php.zip
           cd php-src-php-$VERSION/ext
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
-            if test -d $i; then
+            if [ test -d $i ] && [ -f $i/config.m4 ]; then
               cd $i
               echo --------------------------------------------------------
               echo 

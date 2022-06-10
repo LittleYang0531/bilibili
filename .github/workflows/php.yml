@@ -64,6 +64,7 @@ jobs:
           sudo rm pdo_* -r
           sudo rm reflection -r
           sudo rm spl -r
+          sudo rm standard -r
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i

@@ -51,7 +51,7 @@ jobs:
           ./configure --prefix=/etc/php/$VERSION --sysconfdir=/etc/php/$VERSION --with-config-file-path=/etc/php/$VERSION --enable-fpm --enable-cgi
           sudo make -j32
           sudo make install
-          sudo cp ./php.ini-production /etc/php8/php.ini
+          sudo cp ./php.ini-production /etc/php/$VERSION/php.ini
       - name: Build extensions
         run: |
           cd php-src-php-$VERSION

@@ -43,7 +43,7 @@ jobs:
         run: |
           wget https://github.com/php/php-src/archive/refs/tags/php-$VERSION.zip -O php.zip
           unzip -q php.zip
-          cd php-src-php-$VERSION
+          cd php-src-php-$VERSION/etc
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if test -d $i; then
               cd $i
@@ -51,11 +51,11 @@ jobs:
               echo 
               echo 
               echo Installing Extension $i for PHP$VERSION
-              echo Recent Directroy: ${pwd}
+              echo Recent Directroy: $(pwd)
               echo 
               echo 
               echo -------------------------------------------------------
-              echo ../;
+              cd ../;
             fi;
           done
       - name: Build Base Application

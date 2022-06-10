@@ -58,6 +58,7 @@ jobs:
           cd php-src-php-$VERSION/ext
           sudo rm hash -r
           sudo rm json -r
+          sudo rn oci8 -r
           for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
             if [ -d $i ] && [ -f $i/config.m4 ]; then
               cd $i
@@ -73,7 +74,7 @@ jobs:
               if [ $i == 'imap' ]; then ./configure --with-php-config=/etc/php/$VERSION/bin/php-config --with-kerberos --with-imap-ssl;
               else ./configure --with-php-config=/etc/php/$VERSION/bin/php-config;
               fi;
-              sudo make && sudo make install
+              sudo make -j32 && sudo make install
               cd ../;
             fi;
           done

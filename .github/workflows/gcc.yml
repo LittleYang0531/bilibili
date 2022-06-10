@@ -14,7 +14,8 @@ on:
   workflow_dispatch:
   
 env:
-  VERSION: 12.1.0
+  VERSION: 13
+  TYPE: basepoints
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,7 +32,7 @@ jobs:
       # Runs a single command using the runners shell
       - run: |
           echo Downloading gcc-$VERSION source code from mirror...
-          wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-$VERSION/gcc-$VERSION.tar.gz -O gcc.tar.gz -q
+          wget https://github.com/gcc-mirror/gcc/archive/refs/tags/$TYPE/gcc-$VERSION.tar.gz -O gcc.tar.gz
           echo Extracting source code...
           tar -xvf gcc.tar.gz > /dev/null
           cd gcc-$VERSION
@@ -48,3 +49,5 @@ jobs:
           sudo make install
           echo Checking gcc version...
           gcc --version
+          ls /usr/bin -all -h
+          

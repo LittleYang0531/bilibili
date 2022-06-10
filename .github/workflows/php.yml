@@ -42,7 +42,18 @@ jobs:
       - name: Get PHP source
         run: |
           wget https://github.com/php/php-src/archive/refs/tags/php-$VERSION.zip -O php.zip
-          unzip -q php.zip
+          unzip php.zip
+          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do 
+            cd $i
+            echo --------------------------------------------------------
+            echo 
+            echo 
+            echo Installing Extension $i for PHP$VERSION
+            echo Recent Directroy: ${pwd}
+            echo 
+            echo 
+            echo -------------------------------------------------------; 
+          done
       - name: Build Base Application
         run: |
           cd php-src-php-$VERSION
@@ -56,7 +67,7 @@ jobs:
         run: |
           cd php-src-php-$VERSION
           cd ext
-          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do cd $i && /etc/php/$VERSION/bin/phpize --force && ./configure --with-php-config=/etc/php/$VERSION/bin/php-config && sudo make && sudo make install && cd ../ ; done
+          for i in `ls -all | tail -n +4 | awk '{print $9}'`; do cd ../$i && /etc/php/$VERSION/bin/phpize --force && ./configure --with-php-config=/etc/php/$VERSION/bin/php-config && sudo make && sudo make install ; done
       - name: Test php
         run: |
           cd /etc/php/$VERSION

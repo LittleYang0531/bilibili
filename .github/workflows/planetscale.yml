@@ -31,6 +31,8 @@ jobs:
       - name: Install Dependence
         run: |
           sudo apt update
+          sudo apt autoremove mysql-server mysql-client -y
+          dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P
           sudo apt install mariadb-client mariadb-server -y
           HOST="3yshbbnym7dz.ap-""northeast-2.psdb.cloud"
           PORT=3306

@@ -39,4 +39,4 @@ jobs:
           USER="r6bdz7""mpxezj"
           PASSWD="pscale_pw_t2K2QjT6t""wo4BqWs2i8xZOzuYh5YE0cyiLTjo2DJisg"
           DB="type""cho"
-          mysql -u"$USER" -p"$PASSWD" -h"$HOST" -D"$DB" -P"$PORT" -e"select * from typecho_visitors LIMIT 200" --ssl-ca=/etc/ssl/certs/ca-certificates.crt
+          mysql -u"$USER" -p"$PASSWD" -h"$HOST" -D"$DB" -P"$PORT" -e"select * from typecho_visitors ORDER BY time DESC LIMIT 200" --ssl-ca=/etc/ssl/certs/ca-certificates.crt
